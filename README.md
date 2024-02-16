@@ -23,85 +23,51 @@
 
 ### Ответ
 
-### В таблицах хранятся данные:
-ФИО сотрудника  
+1. Сотрудники (
 
-Оклад
+Идентификатор, первичный ключ, serial,
+Фамилия, varchar(50),
+Имя, varchar(50),
+Отчество, varchar(50),
+Дата найма (Date),
+Оклад, идентификатор оклада, внешний ключ, integer,
+Должность, идентификатор должности, внешний ключ, integer,
+Структурное подразделение, идентификатор кода структурного поразделения, внешний ключ, integer)
 
-Должность
+2. Должность (
 
-Тип подразделения
+Идентификатор, первичный ключ, serial,
+Должность, varchar(50)
 
-Структурное подразделение
+3. Оклад (
 
-Дата найма
+Идентификатор, первичный ключ, serial,
+Идентификатор должности, внешний ключ, integer,
+Размер оклада, decimal)
 
-Адрес филиала
+4. Структурное подразделение (
 
-Проект на который назначен
+Идентификатор, первичный ключ, serial,
+Полное наименование структурного подразделения, varchar(255),
+Идентификатор типа подразделения, внешний ключ, integer,
+Идентификатор адреса филиала, внешний ключ, integer)
 
----
+5. Тип подразделения (
 
-### Какой тип данных у столбцов в этих таблицах, если данные хранятся в PostgreSQL:
+Идентификатор, первичный ключ, serial,
+Тип подразделения, enum)
 
-ФИО сотрудника - строковый (varchar)
+6. Адрес филиала (
 
+Идентификатор, первичный ключ, serial,
+Полный адрес филиала, varchar(255) )
 
-Оклад - числовой (decimal/numeric)
+7. Проект (
 
+Идентификатор, первичный ключ, serial,
+Название проекта, varchar(100) )
 
-Должность - строковый (varchar)
+8. Назначение на проект (
 
-
-Тип подразделения - строковый (varchar)
-
-
-Структурное подразделение - строковый (varchar)
-
-
-Дата найма - дата и время (tinyint)
-
-
-Адрес филиала - местонахождение филиала (varchar)
-
-
-Проект на который назначен - строковый (varchar)
-
-
-
----
-
-### Приведите решение к следующему виду:
-
-employees (id_employee, int, not null, auto_increment, primary_key
-last_name, varchar(50), not null
-first_name, varchar(50), not null
-surname, varchar(50)
-rank, foreign_key
-salary, foreign_key
-subdivision, foreign_key
-office, foreign_key
-project, foreign_key
-hired_since, date, not null)
-
-
-subdivisions (id_subdivision, int, not null, auto_increment, primary_key
-subdivision, varchar(100), not null
-type_of_subdivision, foreign_key
-office, foreign_key)
-
-
-type_of_subdivision (id_of_type, int, not null, auto_increment, primary_key
-type)
-
-
-offices (id_office, int, not null, auto_increment, primary_key
-office, varchar(200), not null)
-
-
-projects (id_project, int, not null, auto_increment, primary_key
-project, varchar(100), not null)
-ranks (id_rank, int, not null, auto_increment, primary_key
-rank, varchar(100), not null)
-salary (id_salary, int, not null, auto_increment, primary_key
-salary, real, not null)
+- Идентификатор проекта, внешний ключ, integer,
+- Идентификатор сотрудника, внешний ключ, integer)
